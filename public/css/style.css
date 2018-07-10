@@ -1,0 +1,28 @@
+/********** FONTS **********/
+@import 'fontawesome-all.css';
+
+/********** Geral **********/
+body ::selection {background-color: #E8292C;}
+.left{float: left;}
+.right{float: right;}
+.clear{clear: both;}
+.displayNone{display: none;}
+.colorRed{color:#E8292C;}
+.colorGreen{color:#00a65a;}
+.colorOrange{color:#e99611;}
+.colorYellow{color:gold;}
+a{text-decoration: none;color: #fff;}
+a:hover{text-decoration: none;color: #fff;}
+
+
+
+/********** Notificações  **********/
+.notification{width:100%;height:auto;border-radius:0px 0px 2px 2px;margin:0 auto;color:#fff;overflow:hidden;font-size: 1.6em;}
+.notification .title{margin-right:15px;padding:0px 15px;line-height: 40px;display: inline-block;}
+
+.notification.Sucesso{background: #00a65a;}
+.notification.Sucesso .title{background: #008548;}
+
+.notification.Erro{background: #dd4b39;}
+.notification.Erro .title{background: #b13c2e;}
+/********** close Notificações  **********/
