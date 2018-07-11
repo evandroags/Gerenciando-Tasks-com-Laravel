@@ -10,9 +10,18 @@ use DB;
 
 class TaskController extends Controller {
 
+    //Checar Tasks
+    public function checkTask(Request $request) {
+        $taskRequest = explode('_', $request['idTask']);
+        $request['id'] = $taskRequest[0];
+        $request['status'] = $taskRequest[1];
+        $Tasks = Task::findOrFail($request['id']);
+        $Tasks->update($request->except("_token"));
+    }
+
     //Mostrar registros
     public function index() {
-        $Tasks = DB::table('tasks')->where('status', '<>' ,'3')->orderBy('id', 'desc')->get();
+        $Tasks = DB::table('tasks')->where('status', '<>', '3')->orderBy('id', 'desc')->get();
         return view('home', ['Tasks' => $Tasks]);
     }
 
@@ -29,7 +38,7 @@ class TaskController extends Controller {
 
     //Form Editar registros
     public function edit_task(Request $request) {
-        $Tasks = DB::table('tasks')->where('id', $request['id'])->first();
+        $Tasks = DB::table('tasks')->where('id', $request['id'])->where('status', '<>', '3')->first();
         return view('home_edit', ['Tasks' => $Tasks]);
     }
 
@@ -50,7 +59,7 @@ class TaskController extends Controller {
         $request['status'] = '3';
         try {
             //$Tasks->delete();
-            $Tasks->update($request->except("_token"));
+            //$Tasks->update($request->except("_token"));
             return redirect('home')->with('Msg', "Exclusão lógica realizada com sucesso")->with('notification_status', "Sucesso");
         } catch (\Exception $e) {
             return redirect('home')->with('Msg', "Erro ao deletar")->with('notification_status', "Erro");
